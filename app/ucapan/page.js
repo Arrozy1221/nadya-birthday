@@ -144,6 +144,7 @@ export default function UcapanPage() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [loading, setLoading] = useState(true)
   const [isViewOnly, setIsViewOnly] = useState(false)
+  const [showIntro, setShowIntro] = useState(false)
 
   // Override body overflow for this page
   useEffect(() => {
@@ -153,6 +154,9 @@ export default function UcapanPage() {
       const params = new URLSearchParams(window.location.search)
       if (params.get('view') === 'true') {
         setIsViewOnly(true)
+        setShowIntro(false)
+      } else {
+        setShowIntro(true)
       }
     }
     return () => {
@@ -226,6 +230,82 @@ export default function UcapanPage() {
       color: '#f4ede5',
       position: 'relative',
     }}>
+      {/* ===== INTRO/PROFILE OVERLAY ===== */}
+      <AnimatePresence>
+        {showIntro && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-[#18110b] via-[#0d0b0a] to-[#18110b] overflow-y-auto px-4 py-8"
+            style={{ zIndex: 999 }}
+          >
+            <div className="text-center z-10 max-w-lg w-full flex flex-col items-center">
+              <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-3xl md:text-4xl text-[#d2aa77] mb-6"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                The Birthday Girl 👑
+              </motion.h2>
+
+              {/* Profile Card with premium glowing border */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, type: 'spring', stiffness: 60 }}
+                className="relative w-64 h-80 mb-6 overflow-hidden rounded-3xl"
+                style={{
+                  border: '2px solid rgba(210,170,119,0.4)',
+                  boxShadow: '0 0 30px rgba(210,170,119,0.25), 0 20px 50px rgba(0,0,0,0.5)',
+                }}
+              >
+                <img src="/img/nadya-portrait.jpg" alt="Nadya" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b0a] via-transparent to-transparent opacity-60" />
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="text-[#d4c5b4] text-base md:text-lg mb-6 max-w-sm italic"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                &ldquo;Cantik, baik, dan selalu bikin hari-hari lebih berwarna ✨&rdquo;
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
+                className="text-[#907f6d] text-xs tracking-wider uppercase mb-8 max-w-xs leading-relaxed"
+              >
+                Nadya sedang berulang tahun yang ke-22. Yuk, berikan kado berupa doa dan ucapan termanismu!
+              </motion.p>
+
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05, translateY: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowIntro(false)}
+                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold tracking-wide cursor-pointer transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, #d2aa77, #a87843)',
+                  color: '#120f0d',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  boxShadow: '0 18px 40px rgba(109,76,40,0.35), inset 0 1px 0 rgba(255,255,255,0.18)',
+                }}
+              >
+                Tulis Ucapan 💌
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ===== GLOBAL DECORATIONS ===== */}
       <div className="fixed inset-0 pointer-events-none" style={{
         zIndex: 1, opacity: 0.04,
@@ -331,39 +411,92 @@ export default function UcapanPage() {
 
       {/* ===== FORM SECTION ===== */}
       {!isViewOnly && (
-        <section className="relative" style={{ zIndex: 10, maxWidth: 640, margin: '0 auto', padding: '64px 20px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-          style={{ marginBottom: 40 }}
-        >
-          <p style={{ fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: '#b98f5e', marginBottom: 16 }}>
-            Write Your Wishes
-          </p>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", color: '#f5eee7', fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', marginBottom: 12 }}>
-            Tulis Ucapanmu
-          </h2>
-          <GoldDivider />
-        </motion.div>
+        <section className="relative" style={{ zIndex: 10, maxWidth: 1024, margin: '0 auto', padding: '64px 20px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+            style={{ marginBottom: 48 }}
+          >
+            <p style={{ fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: '#b98f5e', marginBottom: 16 }}>
+              Write Your Wishes
+            </p>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", color: '#f5eee7', fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', marginBottom: 12 }}>
+              Tulis Ucapanmu
+            </h2>
+            <GoldDivider />
+          </motion.div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          style={{
-            borderRadius: 34, padding: 'clamp(24px, 4vw, 40px)',
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025))',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            border: '1px solid rgba(196,154,101,0.10)',
-            boxShadow: '0 24px 70px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.03)',
-          }}
-        >
+          <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
+            {/* Left: Collage of Nadya's photos */}
+            <div className="flex-1 w-full max-w-md lg:max-w-none flex flex-col justify-center relative min-h-[420px] mb-8 lg:mb-0">
+              <div className="grid grid-cols-2 gap-4 relative w-full max-w-sm mx-auto">
+                {/* Photo 1 - tilted */}
+                <motion.div 
+                  initial={{ opacity: 0, rotate: -6 }}
+                  whileInView={{ opacity: 1, rotate: -4 }}
+                  viewport={{ once: true }}
+                  className="bg-[#1c1814] p-3 rounded-2xl shadow-xl border border-white/5"
+                  style={{ transform: 'rotate(-4deg)', transition: 'all 0.3s ease' }}
+                  whileHover={{ scale: 1.03, rotate: -2, zIndex: 20 }}
+                >
+                  <div className="aspect-[3/4] overflow-hidden rounded-xl">
+                    <img src="/img/nadya-card-3.jpg" className="w-full h-full object-cover" alt="" />
+                  </div>
+                  <p className="text-center mt-2 text-xs text-[#d2aa77] font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Birthday Girl ✦</p>
+                </motion.div>
+
+                {/* Photo 2 - tilted opposite */}
+                <motion.div 
+                  initial={{ opacity: 0, rotate: 6 }}
+                  whileInView={{ opacity: 1, rotate: 5 }}
+                  viewport={{ once: true }}
+                  className="bg-[#1c1814] p-3 rounded-2xl shadow-xl border border-white/5"
+                  style={{ transform: 'rotate(5deg)', marginTop: '24px', transition: 'all 0.3s ease' }}
+                  whileHover={{ scale: 1.03, rotate: 2, zIndex: 20 }}
+                >
+                  <div className="aspect-[3/4] overflow-hidden rounded-xl">
+                    <img src="/img/moment_wisata.jpg" className="w-full h-full object-cover" alt="" />
+                  </div>
+                  <p className="text-center mt-2 text-xs text-[#d2aa77] font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Beautiful Day 🌸</p>
+                </motion.div>
+
+                {/* Photo 3 - lower center */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-[#1c1814] p-3 rounded-2xl shadow-xl border border-white/5 col-span-2 max-w-[85%] mx-auto mt-2"
+                  style={{ transform: 'rotate(-1deg)', transition: 'all 0.3s ease' }}
+                  whileHover={{ scale: 1.03, rotate: 0, zIndex: 20 }}
+                >
+                  <div className="aspect-[16/10] overflow-hidden rounded-xl">
+                    <img src="/img/moment_danau.jpg" className="w-full h-full object-cover" alt="" />
+                  </div>
+                  <p className="text-center mt-2 text-xs text-[#d2aa77] font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Special Moments ✨</p>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Right: The glassmorphism form */}
+            <div className="flex-1 w-full max-w-md lg:max-w-none">
+              <motion.form
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                onSubmit={handleSubmit}
+                style={{
+                  borderRadius: 34, padding: 'clamp(24px, 4vw, 40px)',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025))',
+                  backdropFilter: 'blur(14px)',
+                  WebkitBackdropFilter: 'blur(14px)',
+                  border: '1px solid rgba(196,154,101,0.10)',
+                  boxShadow: '0 24px 70px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.03)',
+                }}
+              >
           {/* Name input */}
           <div style={{ marginBottom: 20 }}>
             <label style={{ display: 'block', fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#b39067', marginBottom: 12 }}>
@@ -509,7 +642,9 @@ export default function UcapanPage() {
             ) : 'Kirim Ucapan 💌'}
           </motion.button>
         </motion.form>
-      </section>
+      </div>
+    </div>
+        </section>
       )}
 
       {/* ===== SUCCESS TOAST ===== */}
