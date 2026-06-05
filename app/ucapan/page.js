@@ -410,21 +410,47 @@ export default function UcapanPage() {
 
               {/* Likes Banner */}
               <div
-                className="w-full p-4 rounded-2xl animate-pulse"
+                className="w-full p-4 rounded-2xl"
                 style={{
                   background: 'rgba(255,255,255,0.02)',
                   border: '1px solid rgba(196,154,101,0.05)',
                   textAlign: 'center',
                 }}
               >
-                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#b98f5e', fontWeight: 600, marginBottom: '8px' }}>YANG DIA SUKA 💛</p>
+                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#34d399', fontWeight: 600, marginBottom: '8px' }}>YANG DIA SUKA 💛</p>
                 <div className="flex flex-wrap justify-center gap-1.5">
                   {['Surprise', 'Dikasih tanpa minta', 'Hujan 🌧️', 'Semua berhasil', 'Ga macet'].map((l, idx) => (
                     <span key={idx} style={{
                       fontSize: '9px',
-                      background: 'rgba(210,170,119,0.08)',
-                      color: '#d2aa77',
-                      border: '1px solid rgba(210,170,119,0.15)',
+                      background: 'rgba(16,185,129,0.1)',
+                      color: '#34d399',
+                      border: '1px solid rgba(16,185,129,0.18)',
+                      padding: '3px 8px',
+                      borderRadius: '9999px',
+                    }}>
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dislikes Banner */}
+              <div
+                className="w-full p-4 rounded-2xl mt-4"
+                style={{
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(196,154,101,0.05)',
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#f87171', fontWeight: 600, marginBottom: '8px' }}>YANG DIA GAK SUKA 😤</p>
+                <div className="flex flex-wrap justify-center gap-1.5">
+                  {['Kecoa 🪳', 'Macet & Panas', 'Dijemput telat'].map((l, idx) => (
+                    <span key={idx} style={{
+                      fontSize: '9px',
+                      background: 'rgba(239,68,68,0.1)',
+                      color: '#f87171',
+                      border: '1px solid rgba(239,68,68,0.18)',
                       padding: '3px 8px',
                       borderRadius: '9999px',
                     }}>
