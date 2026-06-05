@@ -276,11 +276,72 @@ export default function UcapanPage() {
                 &ldquo;Cantik, baik, dan selalu bikin hari-hari lebih berwarna ✨&rdquo;
               </motion.p>
 
+              {/* Bio Facts Grid */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-xl mb-6 text-left"
+              >
+                {[
+                  { emoji: '☀️', label: 'LAHIR', value: 'Senin, 14 Juni 2004', sub: 'RS Pondok Indah, Jaksel' },
+                  { emoji: '♊', label: 'ZODIAK', value: 'Gemini', sub: 'Gol. Darah B' },
+                  { emoji: '🎓', label: 'PENDIDIKAN', value: 'Unpad', sub: 'SMAN 4 Tangsel' },
+                  { emoji: '👯‍♀️', label: 'BESTIE', value: 'Audi & Refida', sub: 'Saudara kandung ❤️' },
+                  { emoji: '🍵', label: 'FAVORIT', value: 'Matcha & Sushi', sub: '+ Shihlin + Dimsum' },
+                  { emoji: '🎮', label: 'HOBBY', value: 'Main Valo', sub: 'Clove Main 💜' },
+                ].map((f, i) => (
+                  <div key={i} style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(196,154,101,0.08)',
+                    borderRadius: '16px',
+                    padding: '12px 14px',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)',
+                  }}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm">{f.emoji}</span>
+                      <span style={{ fontSize: '9px', letterSpacing: '0.05em', color: '#b98f5e', fontWeight: 600 }}>{f.label}</span>
+                    </div>
+                    <p style={{ fontSize: '11px', fontWeight: 500, color: '#f5eee7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.value}</p>
+                    <p style={{ fontSize: '9px', color: '#907f6d' }}>{f.sub}</p>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* Likes Banner */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="w-full max-w-xl mb-6 p-3 rounded-2xl animate-pulse"
+                style={{
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(196,154,101,0.05)',
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#b98f5e', fontWeight: 600, marginBottom: '6px' }}>YANG DIA SUKA 💛</p>
+                <div className="flex flex-wrap justify-center gap-1.5">
+                  {['Surprise', 'Dikasih tanpa minta', 'Hujan 🌧️', 'Semua berhasil', 'Ga macet'].map((l, idx) => (
+                    <span key={idx} style={{
+                      fontSize: '9px',
+                      background: 'rgba(210,170,119,0.08)',
+                      color: '#d2aa77',
+                      border: '1px solid rgba(210,170,119,0.15)',
+                      padding: '3px 8px',
+                      borderRadius: '9999px',
+                    }}>
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.9 }}
-                className="text-[#907f6d] text-xs tracking-wider uppercase mb-8 max-w-xs leading-relaxed"
+                transition={{ delay: 1.0 }}
+                className="text-[#907f6d] text-xs tracking-wider uppercase mb-6 max-w-xs leading-relaxed"
               >
                 Nadya sedang berulang tahun yang ke-22. Yuk, berikan kado berupa doa dan ucapan termanismu!
               </motion.p>
@@ -458,7 +519,7 @@ export default function UcapanPage() {
                   whileHover={{ scale: 1.03, rotate: 2, zIndex: 20 }}
                 >
                   <div className="aspect-[3/4] overflow-hidden rounded-xl">
-                    <img src="/img/moment_wisata.jpg" className="w-full h-full object-cover" alt="" />
+                    <img src="/img/nadya-card-5.jpg" className="w-full h-full object-cover" alt="" />
                   </div>
                   <p className="text-center mt-2 text-xs text-[#d2aa77] font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Beautiful Day 🌸</p>
                 </motion.div>
@@ -473,7 +534,7 @@ export default function UcapanPage() {
                   whileHover={{ scale: 1.03, rotate: 0, zIndex: 20 }}
                 >
                   <div className="aspect-[16/10] overflow-hidden rounded-xl">
-                    <img src="/img/moment_danau.jpg" className="w-full h-full object-cover" alt="" />
+                    <img src="/img/nadya-card-6.jpg" className="w-full h-full object-cover" alt="" />
                   </div>
                   <p className="text-center mt-2 text-xs text-[#d2aa77] font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Special Moments ✨</p>
                 </motion.div>
