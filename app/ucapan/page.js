@@ -388,7 +388,6 @@ export default function UcapanPage() {
                   { emoji: '☀️', label: 'LAHIR', value: 'Senin, 14 Juni 2004', sub: 'RS Pondok Indah, Jaksel' },
                   { emoji: '♊', label: 'ZODIAK', value: 'Gemini', sub: 'Gol. Darah B' },
                   { emoji: '🎓', label: 'PENDIDIKAN', value: 'Unpad', sub: 'SMAN 4 Tangsel' },
-                  { emoji: '👯‍♀️', label: 'BESTIE', value: 'Audi & Refida', sub: 'Saudara kandung ❤️' },
                   { emoji: '🍵', label: 'FAVORIT', value: 'Matcha & Sushi', sub: '+ Shihlin + Dimsum' },
                   { emoji: '🎮', label: 'HOBBY', value: 'Main Valo', sub: 'Clove Main 💜' },
                 ].map((f, i) => (
