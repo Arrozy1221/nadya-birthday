@@ -144,7 +144,6 @@ export default function UcapanPage() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [loading, setLoading] = useState(true)
   const [isViewOnly, setIsViewOnly] = useState(false)
-  const [showIntro, setShowIntro] = useState(false)
 
   // Override body overflow for this page
   useEffect(() => {
@@ -154,9 +153,6 @@ export default function UcapanPage() {
       const params = new URLSearchParams(window.location.search)
       if (params.get('view') === 'true') {
         setIsViewOnly(true)
-        setShowIntro(false)
-      } else {
-        setShowIntro(true)
       }
     }
     return () => {
@@ -230,143 +226,6 @@ export default function UcapanPage() {
       color: '#f4ede5',
       position: 'relative',
     }}>
-      {/* ===== INTRO/PROFILE OVERLAY ===== */}
-      <AnimatePresence>
-        {showIntro && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-[#18110b] via-[#0d0b0a] to-[#18110b] overflow-y-auto px-4 py-8"
-            style={{ zIndex: 999 }}
-          >
-            <div className="text-center z-10 max-w-lg w-full flex flex-col items-center">
-              <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-3xl md:text-4xl text-[#d2aa77] mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                The Birthday Girl 👑
-              </motion.h2>
-
-              {/* Profile Card with premium glowing border */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, type: 'spring', stiffness: 60 }}
-                className="relative w-64 h-80 mb-6 overflow-hidden rounded-3xl"
-                style={{
-                  border: '2px solid rgba(210,170,119,0.4)',
-                  boxShadow: '0 0 30px rgba(210,170,119,0.25), 0 20px 50px rgba(0,0,0,0.5)',
-                }}
-              >
-                <img src="/img/nadya-portrait.jpg" alt="Nadya" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b0a] via-transparent to-transparent opacity-60" />
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="text-[#d4c5b4] text-base md:text-lg mb-6 max-w-sm italic"
-                style={{ fontFamily: "'Poppins', sans-serif" }}
-              >
-                &ldquo;Cantik, baik, dan selalu bikin hari-hari lebih berwarna ✨&rdquo;
-              </motion.p>
-
-              {/* Bio Facts Grid */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-xl mb-6 text-left"
-              >
-                {[
-                  { emoji: '☀️', label: 'LAHIR', value: 'Senin, 14 Juni 2004', sub: 'RS Pondok Indah, Jaksel' },
-                  { emoji: '♊', label: 'ZODIAK', value: 'Gemini', sub: 'Gol. Darah B' },
-                  { emoji: '🎓', label: 'PENDIDIKAN', value: 'Unpad', sub: 'SMAN 4 Tangsel' },
-                  { emoji: '👯‍♀️', label: 'BESTIE', value: 'Audi & Refida', sub: 'Saudara kandung ❤️' },
-                  { emoji: '🍵', label: 'FAVORIT', value: 'Matcha & Sushi', sub: '+ Shihlin + Dimsum' },
-                  { emoji: '🎮', label: 'HOBBY', value: 'Main Valo', sub: 'Clove Main 💜' },
-                ].map((f, i) => (
-                  <div key={i} style={{
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(196,154,101,0.08)',
-                    borderRadius: '16px',
-                    padding: '12px 14px',
-                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)',
-                  }}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-sm">{f.emoji}</span>
-                      <span style={{ fontSize: '9px', letterSpacing: '0.05em', color: '#b98f5e', fontWeight: 600 }}>{f.label}</span>
-                    </div>
-                    <p style={{ fontSize: '11px', fontWeight: 500, color: '#f5eee7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.value}</p>
-                    <p style={{ fontSize: '9px', color: '#907f6d' }}>{f.sub}</p>
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* Likes Banner */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
-                className="w-full max-w-xl mb-6 p-3 rounded-2xl animate-pulse"
-                style={{
-                  background: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(196,154,101,0.05)',
-                  textAlign: 'center',
-                }}
-              >
-                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#b98f5e', fontWeight: 600, marginBottom: '6px' }}>YANG DIA SUKA 💛</p>
-                <div className="flex flex-wrap justify-center gap-1.5">
-                  {['Surprise', 'Dikasih tanpa minta', 'Hujan 🌧️', 'Semua berhasil', 'Ga macet'].map((l, idx) => (
-                    <span key={idx} style={{
-                      fontSize: '9px',
-                      background: 'rgba(210,170,119,0.08)',
-                      color: '#d2aa77',
-                      border: '1px solid rgba(210,170,119,0.15)',
-                      padding: '3px 8px',
-                      borderRadius: '9999px',
-                    }}>
-                      {l}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.0 }}
-                className="text-[#907f6d] text-xs tracking-wider uppercase mb-6 max-w-xs leading-relaxed"
-              >
-                Nadya sedang berulang tahun yang ke-22. Yuk, berikan kado berupa doa dan ucapan termanismu!
-              </motion.p>
-
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05, translateY: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowIntro(false)}
-                className="inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm font-semibold tracking-wide cursor-pointer transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #d2aa77, #a87843)',
-                  color: '#120f0d',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  boxShadow: '0 18px 40px rgba(109,76,40,0.35), inset 0 1px 0 rgba(255,255,255,0.18)',
-                }}
-              >
-                Tulis Ucapan 💌
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* ===== GLOBAL DECORATIONS ===== */}
       <div className="fixed inset-0 pointer-events-none" style={{
         zIndex: 1, opacity: 0.04,
@@ -469,6 +328,116 @@ export default function UcapanPage() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* ===== PROFILE SECTION ===== */}
+      {!isViewOnly && (
+        <section className="relative" style={{ zIndex: 10, maxWidth: 1024, margin: '0 auto', padding: '64px 20px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+            style={{ marginBottom: 48 }}
+          >
+            <p style={{ fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: '#b98f5e', marginBottom: 16 }}>
+              The Birthday Girl
+            </p>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", color: '#f5eee7', fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', marginBottom: 12 }}>
+              Profil Nadya Aisyah Rahmani 👑
+            </h2>
+            <GoldDivider />
+          </motion.div>
+
+          <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
+            {/* Left Column: Portrait */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 w-full max-w-sm flex justify-center"
+            >
+              <div
+                className="relative w-64 h-80 overflow-hidden rounded-3xl"
+                style={{
+                  border: '2px solid rgba(210,170,119,0.4)',
+                  boxShadow: '0 0 30px rgba(210,170,119,0.25), 0 20px 50px rgba(0,0,0,0.5)',
+                }}
+              >
+                <img src="/img/nadya-portrait.jpg" alt="Nadya" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b0a] via-transparent to-transparent opacity-60" />
+              </div>
+            </motion.div>
+
+            {/* Right Column: Bio Facts Grid & Likes */}
+            <div className="flex-1 w-full max-w-xl">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#d4c5b4] text-base italic mb-6 max-w-md text-center lg:text-left"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                &ldquo;Cantik, baik, dan selalu bikin hari-hari lebih berwarna ✨&rdquo;
+              </motion.p>
+
+              {/* Bio Facts Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6 text-left">
+                {[
+                  { emoji: '☀️', label: 'LAHIR', value: 'Senin, 14 Juni 2004', sub: 'RS Pondok Indah, Jaksel' },
+                  { emoji: '♊', label: 'ZODIAK', value: 'Gemini', sub: 'Gol. Darah B' },
+                  { emoji: '🎓', label: 'PENDIDIKAN', value: 'Unpad', sub: 'SMAN 4 Tangsel' },
+                  { emoji: '👯‍♀️', label: 'BESTIE', value: 'Audi & Refida', sub: 'Saudara kandung ❤️' },
+                  { emoji: '🍵', label: 'FAVORIT', value: 'Matcha & Sushi', sub: '+ Shihlin + Dimsum' },
+                  { emoji: '🎮', label: 'HOBBY', value: 'Main Valo', sub: 'Clove Main 💜' },
+                ].map((f, i) => (
+                  <div key={i} style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(196,154,101,0.08)',
+                    borderRadius: '16px',
+                    padding: '12px 14px',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)',
+                  }}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm">{f.emoji}</span>
+                      <span style={{ fontSize: '9px', letterSpacing: '0.05em', color: '#b98f5e', fontWeight: 600 }}>{f.label}</span>
+                    </div>
+                    <p style={{ fontSize: '11px', fontWeight: 500, color: '#f5eee7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.value}</p>
+                    <p style={{ fontSize: '9px', color: '#907f6d' }}>{f.sub}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Likes Banner */}
+              <div
+                className="w-full p-4 rounded-2xl animate-pulse"
+                style={{
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(196,154,101,0.05)',
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontSize: '9px', letterSpacing: '0.1em', color: '#b98f5e', fontWeight: 600, marginBottom: '8px' }}>YANG DIA SUKA 💛</p>
+                <div className="flex flex-wrap justify-center gap-1.5">
+                  {['Surprise', 'Dikasih tanpa minta', 'Hujan 🌧️', 'Semua berhasil', 'Ga macet'].map((l, idx) => (
+                    <span key={idx} style={{
+                      fontSize: '9px',
+                      background: 'rgba(210,170,119,0.08)',
+                      color: '#d2aa77',
+                      border: '1px solid rgba(210,170,119,0.15)',
+                      padding: '3px 8px',
+                      borderRadius: '9999px',
+                    }}>
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== FORM SECTION ===== */}
       {!isViewOnly && (
