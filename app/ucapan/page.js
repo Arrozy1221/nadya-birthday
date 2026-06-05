@@ -143,11 +143,18 @@ export default function UcapanPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [isViewOnly, setIsViewOnly] = useState(false)
 
   // Override body overflow for this page
   useEffect(() => {
     document.body.style.overflow = 'auto'
     document.body.style.overflowX = 'hidden'
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('view') === 'true') {
+        setIsViewOnly(true)
+      }
+    }
     return () => {
       document.body.style.overflow = 'hidden'
     }
@@ -298,7 +305,9 @@ export default function UcapanPage() {
             transition={{ delay: 1, duration: 0.8 }}
             style={{ color: '#b8ab9d', fontSize: 14, maxWidth: 420, margin: '0 auto', lineHeight: 1.7 }}
           >
-            Tuliskan doa dan ucapan terbaikmu untuk Nadya di hari ulang tahunnya yang ke-22 🎂
+            {isViewOnly 
+              ? 'Lihat kumpulan doa dan ucapan manis dari orang-orang tersayang untukmu di hari spesial ini 💖'
+              : 'Tuliskan doa dan ucapan terbaikmu untuk Nadya di hari ulang tahunnya yang ke-22 🎂'}
           </motion.p>
 
           <motion.div
@@ -321,7 +330,8 @@ export default function UcapanPage() {
       </section>
 
       {/* ===== FORM SECTION ===== */}
-      <section className="relative" style={{ zIndex: 10, maxWidth: 640, margin: '0 auto', padding: '64px 20px' }}>
+      {!isViewOnly && (
+        <section className="relative" style={{ zIndex: 10, maxWidth: 640, margin: '0 auto', padding: '64px 20px' }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -500,6 +510,7 @@ export default function UcapanPage() {
           </motion.button>
         </motion.form>
       </section>
+      )}
 
       {/* ===== SUCCESS TOAST ===== */}
       <AnimatePresence>

@@ -79,7 +79,7 @@ export default function Closing() {
         {/* Link to Ucapan page */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.2 }} className="mt-8">
-          <Link href="/ucapan">
+          <Link href="/ucapan?view=true">
             <motion.span
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -91,7 +91,7 @@ export default function Closing() {
                 boxShadow: '0 18px 40px rgba(109, 76, 40, 0.35), inset 0 1px 0 rgba(255,255,255,0.18)',
               }}
             >
-              Tulis Ucapan untuk Nadya 💌
+              Lihat Ucapan Teman-Teman 💌
             </motion.span>
           </Link>
         </motion.div>
