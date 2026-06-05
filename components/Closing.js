@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 const hearts = ['❤️','💕','💖','💗','💝','🩷','💘']
 
@@ -60,7 +61,7 @@ export default function Closing() {
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
           className="text-rose-100 mb-6 text-sm md:text-base">
-          Semoga tahun ke-21 ini jadi tahun terbaik kamu.
+          Semoga tahun ke-22 ini jadi tahun terbaik kamu.
         </motion.p>
         <motion.p initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2, type: 'spring' }}
@@ -74,6 +75,26 @@ export default function Closing() {
           style={{ fontFamily: 'var(--font-script)' }}>
           — Arrozy 🐝💛
         </motion.p>
+
+        {/* Link to Ucapan page */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3.2 }} className="mt-8">
+          <Link href="/ucapan">
+            <motion.span
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide cursor-pointer transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, #d2aa77, #a87843)',
+                color: '#120f0d',
+                border: '1px solid rgba(255,255,255,0.15)',
+                boxShadow: '0 18px 40px rgba(109, 76, 40, 0.35), inset 0 1px 0 rgba(255,255,255,0.18)',
+              }}
+            >
+              Tulis Ucapan untuk Nadya 💌
+            </motion.span>
+          </Link>
+        </motion.div>
       </div>
     </motion.section>
   )

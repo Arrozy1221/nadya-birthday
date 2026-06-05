@@ -2,7 +2,7 @@ import './globals.css'
 
 export const metadata = {
   title: 'Happy Birthday Nadya 🎂',
-  description: 'Selamat Ulang Tahun ke-21, Nadya Aisyah Rahmani',
+  description: 'Selamat Ulang Tahun ke-22, Nadya Aisyah Rahmani',
 }
 
 export default function RootLayout({ children }) {

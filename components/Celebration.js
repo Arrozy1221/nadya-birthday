@@ -50,7 +50,7 @@ export default function Celebration({ onNext }) {
           transition={{ delay: 0.5 }}
           className="text-4xl md:text-5xl text-yellow-300 mb-3"
           style={{ fontFamily: 'var(--font-script)' }}>
-          🎉 Happy 21st Birthday! 🎉
+          🎉 Happy 22nd Birthday! 🎉
         </motion.h1>
         <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
